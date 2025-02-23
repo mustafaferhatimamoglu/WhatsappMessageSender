@@ -1,48 +1,37 @@
 ﻿@page
-@model WhatsappMessageSender.Pages.IndexModel
-@* @using DevExpress.Blazor // Add this line if you are using DevExpress components *@
+@model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+	ViewData["Title"] = "Home page";
 }
-@* <style>
-    body {
-        background-color: black;
-        color: white;
-    }
-</style> *@
 
 
 
-<head runat="server">
-    <title></title>
-    <script type="text/javascript">
 
-        function HandleIT() {
-           var name = document.getElementById('<%=txtname.ClientID %>').value;
-           var address = document.getElementById('<%=txtaddress.ClientID %>').value;
+<div class="text-center">
+	<h1 class="display-4">Welcome</h1>
+	<p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
 
-            PageMethods.ProcessIT(name, address, onSucess, onError);
-           function onSucess(result) {
-                alert(result);
-            }
+<form action="javascript:void(0);" method="POST" onsubmit="addItem()">
+	<input type="text" id="add-name" placeholder="New to-do">
+	<input type="submit" value="Add">
+</form>
 
-            function onError(result) {
-                alert('Something wrong.');
-            }
-        }
-    </script>
-</head>
-
-
-
-<div>
-    <p>Say bye-bey to Postbacks.</p>
-
-    <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true"></asp:ScriptManager>
-
-    <asp:TextBox ID="txtname" runat="server"></asp:TextBox>
-    <br />
-    <asp:TextBox ID="txtaddress" runat="server"></asp:TextBox>
-    <br />
-    <asp:Button ID="btnCreateAccount" runat="server" Text="Signup" OnClientClick="HandleIT(); return false;" />
-</div>  
+<script>
+	function addItem() {
+		const input = document.getElementById('add-name');
+		$.ajax({
+		url: '?handler=WriteLog&msg='+input.value,
+		success: function (data) {
+			alert(data);
+		},
+		error: function (error) {
+		  alert("Error: " + error);
+		}
+	  })
+		if (input.value) {
+			console.log('Item added:', input.value);
+			input.value = ''; // Clear the input after adding
+		}
+	}
+</script>
