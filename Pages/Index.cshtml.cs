@@ -8,6 +8,7 @@ namespace WhatsappMessageSender.Pages
         public void OnGet()
         {
         }
+       
         public IActionResult OnGetWriteLog(string msg)
         {
             if (msg == "error")

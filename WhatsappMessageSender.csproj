@@ -8,6 +8,9 @@
     <Folder Include="Pages\Home\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="wwwroot\js\Index.js" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.3.0" />
     <PackageReference Include="DevExtreme.AspNet.Core" Version="24.2.3" />
     <PackageReference Include="DevExtreme.AspNet.Data" Version="5.0.0-rc1" />
